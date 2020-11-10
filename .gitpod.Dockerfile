@@ -3,12 +3,13 @@ ENV NODE_ENV production
 RUN apk add --no-cache bash && \
   apk upgrade --no-cache --available
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["package.json", "./"]
 RUN npm rm -rf node_modules
 RUN npm cache clean --force
 RUN npm install -g vue-cli
 RUN npm install --only=dev
 RUN npm install --production
+RUN npm cache clean --force
 RUN npm update
 COPY . .
 RUN npm run build --prod
