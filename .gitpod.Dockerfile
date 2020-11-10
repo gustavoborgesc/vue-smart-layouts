@@ -2,7 +2,7 @@ FROM node:alpine As builder
 ENV NODE_ENV production
 RUN apk add --no-cache bash && \
   apk upgrade --no-cache --available
-RUN npm install -g npm
+RUN npm install -g npm@7.0.10
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json", "./"]
 RUN npm rm -rf node_modules
